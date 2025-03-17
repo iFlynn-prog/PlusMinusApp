@@ -3,9 +3,11 @@ import java.util.Scanner;
 public class Greetings {
     public static void greetings() {
         Scanner console = new Scanner(System.in);
-        boolean isFinished = false;
+        boolean startMenuLoop = false;
+        PlusClass plusClass = new PlusClass();
 
-        while (!isFinished) {
+
+        while (!startMenuLoop) {
             System.out.println("Меню");
             System.out.println("1: Выберите сложение");
             System.out.println("2: Выберите вычитание");
@@ -15,7 +17,7 @@ public class Greetings {
             switch (choose) {
                 case 1:
                     System.out.println("Примеры на сложение");
-                    PlusClass.plus();
+                    plusClass.isPlus();
                     break;
                 case 2:
                     System.out.println("Примеры на вычитание");
@@ -23,10 +25,10 @@ public class Greetings {
                     break;
                 case 3:
                     System.out.println("До свидания");
-                    isFinished = true;
+                    startMenuLoop = true;
                     break;
                 default:
-                    System.out.println("Выберите пункт меню");
+                    System.out.println("Выберите пункт меню, цисла от 1 до 3");
                     break;
             }
         }
