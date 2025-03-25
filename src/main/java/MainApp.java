@@ -1,9 +1,10 @@
-import actions.Greetings;
+import menu.StartMenuClass;
 
 public class MainApp {
 
     public static void main(String[] args) {
-        Greetings.greetingsMenu();
+        StartMenuClass startMenu = new StartMenuClass();
+        startMenu.startMenu();
     }
 
 

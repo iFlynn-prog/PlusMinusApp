@@ -1,30 +1,44 @@
-package actions;
+package menu;
 
+import select.AdditionClass;
+import select.SubtractionClass;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Greetings {
-
-    public static void greetingsMenu() {
+public class StartMenuClass {
+    boolean startMenuLoop = false;
+    public void startMenu() {
         Scanner console = new Scanner(System.in);
-        boolean startMenuLoop = false;
-        PlusClass plusClass = new PlusClass();
+        AdditionClass addition = new AdditionClass();
+        SubtractionClass subtraction = new SubtractionClass();
 
+        int choose;
         while (!startMenuLoop) {
             System.out.println("Меню");
             System.out.println("1: Выберите сложение");
             System.out.println("2: Выберите вычитание");
             System.out.println("3: Выход");
 
-            int choose = console.nextInt();
+            try {
+                choose = console.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Цифры в меню блеать");
+                startMenu();
+                break;
+            }
+
             switch (choose) {
+
                 case 1:
                     System.out.println("Примеры на сложение");
-                    plusClass.isPlus();
+                    addition.isPlus();
                     break;
                 case 2:
                     System.out.println("Примеры на вычитание");
                     System.out.println("В РАЗРАБОТКЕ");
-                    startMenuLoop = true;
+                    subtraction.isMinus();
+
                     break;
                 case 3:
                     System.out.println("До свидания");
