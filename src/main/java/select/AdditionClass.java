@@ -55,7 +55,7 @@ public class AdditionClass {
             }
             if (answer.equals(result)) {
                 System.out.println("Правильно!");
-                return;
+
             }
         }
     }

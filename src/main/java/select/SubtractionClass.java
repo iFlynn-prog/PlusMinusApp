@@ -1,5 +1,6 @@
 package select;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -11,6 +12,7 @@ public class SubtractionClass {
     int minusResult;
     Integer minusAnswer;
     boolean subtractionLoop = false;
+    boolean subtractionLoopCheckCorrect = false;
     int actionMinusResult;
 
     public int actionMinus(int firstNumber, int secondNumber) {
@@ -26,21 +28,34 @@ public class SubtractionClass {
     }
 
     public void isMinus() {
-        while (!subtractionLoop) {
-            firstNumber = random.nextInt(10);
-            secondNumber = random.nextInt(10);
-            minusResult = actionMinus(firstNumber, secondNumber);
-            minusAnswer = console.nextInt();
-            if (minusAnswer.equals(minusResult)) {
-                System.out.println("Правильно");
-                isMinus();
-            }else {
-                System.out.print("Неверно, попробуй еще раз \n"+ firstNumber + " - " + secondNumber + " =");
+        try {
+            while (!subtractionLoop) {
+                firstNumber = random.nextInt(10);
+                secondNumber = random.nextInt(10);
+                minusResult = actionMinus(firstNumber, secondNumber);
                 minusAnswer = console.nextInt();
+                if (minusAnswer.equals(minusResult)) {
+                    System.out.println("Правильно");
+                    isMinus();
+                } else {
+                    while (!subtractionLoopCheckCorrect) {
+                        System.out.print("Неверно, попробуй еще раз \n");
+                        System.out.print("Введи правильный ответ: ");
+                        minusAnswer = console.nextInt();
+                        if (minusAnswer.equals(minusResult)) {
+                            System.out.println("Правильно");
+                            isMinus();
+                        }
+                    }
+                }
             }
+
+        } catch (InputMismatchException e) {
+            System.out.println("Блок ошибки на вычитании");
+            subtractionLoop = true;
+            subtractionLoopCheckCorrect = true;
+
 
         }
     }
-
-
 }
